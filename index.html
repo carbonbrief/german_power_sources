@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Power sources in Germany | Carbon Brief</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700|PT+Serif:400,400italic" rel="stylesheet" type="text/css">
+    <style>
+      html, body, #map {
+        height: 100%;
+        padding: 0;
+        margin: 0;
+      }
+	  
+	  select {
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   background: url(https://s3-eu-west-1.amazonaws.com/cbbranding/new+folder/arrow-for-map.png) 96% / 15% no-repeat #ffffff;
+   background-size: 20px 13px;
+}
+	  
+	  #map_title {
+		  font-family: "PT Sans Narrow", Arial;
+		  color: #333333;
+		  top: 10px;
+		  right: 30px;
+		  width: 200px;
+		  height: 50px;
+		  z-index: 9000;
+		  position: absolute;
+		  }
+	  
+      #selector_menu {
+      	position: absolute;
+      	top: 10px;
+      	right: 10px;
+      	z-index: 9000;
+		box-shadow: 0px 0px 10px #888888;
+		border-radius: 9px;
+      }
+	  
+	  #selector {
+		  font-family: "PT Sans", Arial;
+		  font-size: 14px;
+	  }
+	  
+      #selector_menu option {
+        border-bottom: 1px solid #999;
+        padding: 15px 30px;
+        font-family: "PT Sans", Arial;
+        font-size: 13px;
+        color: #444;
+        cursor: auto;
+      }
+      #selector_menu option:hover {
+        background-color: #F0F0F0;
+        cursor: pointer;
+      }
+       #selector_menu option.selected {
+        background-color: #EEE;
+		font-family: "PT Sans", Arial;
+      }
+    </style>
+    <!-- include cartodb css  -->
+    <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css" />
+    <!-- include cartodb.js library -->
+    <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
+
+  </head>
+<body>
+	<div id='map'></div>
+    <div id='map_title'>Power sources in Germany</div>
+	<div id='selector_menu'>
+		<select id='selector' style='width: 200px; height: 40px; font-family: "PT Sans", Arial; font-size: 14px; padding:6px; padding-left: 10px;'>
+			<option value='reset'>All power sources</option>
+            <option value='layer11'>All renewable</option>
+            <option value='layer12'>All non-renewable</option>
+            <option value='layer10'>All combined heat &amp; power</option>
+            <option value = 'layer3' style="border-left: #FF6600 5px;">Biomass</option>
+            <option value = 'layer4'>Coal</option>
+            <option value = 'layer5'>Gas</option>
+            <option value = 'layer8'>Hydro</option>
+            <option value = 'layer6'>Nuclear</option>
+            <option value = 'layer9'>Oil</option>
+            <option value = 'layer2'>Solar</option>
+            <option value = 'layer7'>Waste</option>
+			<option value='layer1'>Wind</option>
+		</select>
+
+	</div>	
+	<script>
+		
+		function init(){
+
+			var sublayer;
+			// create leaflet map and define some properties
+        var map = L.map('map', { 
+          zoomControl: true,
+		  scrollWheelZoom: false,
+          center: [51.5, 10],
+          zoom: 6
+        })
+
+        // add a base layer to map
+        L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+          attribution: 'Mapbox <a href="http://mapbox.com/about/maps" target="_blank">Terms &amp; Feedback</a>'
+        }).addTo(map);
+
+			var layerUrl = 'https://rospearce.cartodb.com/api/v2/viz/5168d148-27f9-11e6-8382-0e5db1731f59/viz.json' ;
+			cartodb.createLayer(map,layerUrl)
+				.addTo(map)
+				.on('done', function(layer){
+					sublayer = layer.getSubLayer(0);
+
+					var LayerActions = {
+						reset: function(){
+							sublayer.setSQL("SELECT * FROM german_power_sources");
+						},
+						layer1: function(){
+							sublayer.setSQL("SELECT * FROM german_power_sources WHERE type = 'Onshore wind' OR type = 'Offshore wind'");
+							return true;
+						},
+						layer2: function(){
+							
+							sublayer.setSQL("SELECT * FROM german_power_sources WHERE type = 'Solar'");
+							return true;
+						},
+						layer3: function(){
+							
+							sublayer.setSQL("SELECT * FROM german_power_sources WHERE type = 'Biomass' OR type = 'Biomass CHP'");
+							return true;
+						},
+						layer4: function(){
+							
+							sublayer.setSQL("SELECT * FROM german_power_sources WHERE type = 'Hard coal' OR type = 'Hard coal CHP' OR type = 'Lignite' OR type = 'Lignite CHP'");
+							return true;
+						},
+						layer5: function(){
+							
+							sublayer.setSQL("SELECT * FROM german_power_sources WHERE type = 'Gas' OR type = 'Landfill gas' OR type = 'Mine gas' OR type = 'Gas CHP' OR type = 'Sewage gas'");
+							return true;
+						},
+						layer6: function(){
+							
+							sublayer.setSQL("SELECT * FROM german_power_sources WHERE type = 'Nuclear'");
+							return true;
+						},
+						layer7: function(){
+							
+							sublayer.setSQL("SELECT * FROM german_power_sources WHERE type = 'Waste' OR type = 'Waste CHP'");
+							return true;
+						},
+						layer8: function(){
+							
+							sublayer.setSQL("SELECT * FROM german_power_sources WHERE type = 'Hydro' OR type = 'Pumped hydro'");
+							return true;
+						},
+						layer9: function(){
+							
+							sublayer.setSQL("SELECT * FROM german_power_sources WHERE type = 'Oil' OR type = 'Oil CHP'");
+							return true;
+						},
+						layer10: function(){
+							
+							sublayer.setSQL("SELECT * FROM german_power_sources WHERE CHP = 'CHP'");
+							return true;
+						},
+						layer11: function(){
+							
+							sublayer.setSQL("SELECT * FROM german_power_sources WHERE renewable = 'Renewable'");
+							return true;
+						},
+						layer12: function(){
+							
+							sublayer.setSQL("SELECT * FROM german_power_sources WHERE renewable = 'Non-renewable'");
+							return true;
+						}
+					}
+
+				$('#selector').change(function() {
+					 LayerActions[$(this).val()]();
+				});	
+				
+	
+
+				});
+		}
+
+
+		window.onload = init;
+
+	</script>
+</body>
+</html>
