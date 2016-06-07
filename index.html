@@ -23,7 +23,7 @@
 	  #map_title {
 		  font-family: "PT Sans Narrow", Arial;
 		  font-size: 28.3px;
-		  color: #333333;
+		  color: #000000;
 		  top: 17px;
 		  left: 60px;
 		  width: 260px;
@@ -65,10 +65,83 @@
 		font-family: "PT Sans", Arial;
       }
 	  
+	  .total {
+		  position: absolute;
+      	bottom: 42px;
+      	left: 10px;
+		z-index: 9000;
+		  width: 340px;
+		height: 25px;
+		  font-family: "PT Sans", Arial;
+		  font-size: 23px;
+		  color: #000000;
+		  background-color:transparent;
+		  padding-left: 8px;
+		  }
+		  
+	#renewablestotal {
+		border-left: 4px solid rgba(243,243,243,.6);
+	}
+	
+	#alltotal {
+		border-left: 4px solid rgba(243,243,243,.6);
+	}
+	
+	#nonrenewablestotal {
+		border-left: 4px solid rgba(243,243,243,.6);
+	}
+	
+	#CHPtotal {
+		border-left: 4px solid rgba(243,243,243,.6);
+	}
+	
+	#biomasstotal {
+		border-left: 4px solid rgba(255,102,0,.6);
+	}
+	
+	#coaltotal {
+		border-left: 4px solid rgba(0,0,0,.6);
+	}
+	
+	#gastotal {
+		border-left: 4px solid rgba(15,59,130,.6);
+	}
+	
+	#hydrototal {
+		border-left: 4px solid rgba(54,128,130,.6);
+	}
+	
+	#nucleartotal {
+		border-left: 4px solid rgba(186,43,118,.6);
+	}
+	
+	#oiltotal {
+		border-left: 4px solid rgba(65,0,109,.6);
+	}
+	
+	#othertotal {
+		border-left: 4px solid rgba(175,135,110,.6);
+	}
+	
+	#solartotal {
+		border-left: 4px solid rgba(255,204,0,.6);
+	}
+	
+	#wastetotal {
+		border-left: 4px solid rgba(214,48,29,.6);
+	}
+	
+	#windtotal {
+		border-left: 4px solid rgba(19,100,0,.6);
+	}
+	  
 	@media only screen and (max-width: 750px) {
     #map_title {
         display: none;
     }
+	.total {
+		display: none;
+	}
 }
 	  
     </style>
@@ -87,18 +160,61 @@
             <option value='layer11'>All renewable</option>
             <option value='layer12'>All non-renewable</option>
             <option value='layer10'>All combined heat &amp; power</option>
-            <option value = 'layer3' style="border-left: #FF6600 5px;">Biomass</option>
+            <option value = 'layer3'>Biomass</option>
             <option value = 'layer4'>Coal</option>
             <option value = 'layer5'>Gas</option>
             <option value = 'layer8'>Hydro</option>
             <option value = 'layer6'>Nuclear</option>
             <option value = 'layer9'>Oil</option>
+            <option value = 'layer13'>Other</option>
             <option value = 'layer2'>Solar</option>
             <option value = 'layer7'>Waste</option>
 			<option value='layer1'>Wind</option>
 		</select>
 
-	</div>	
+	</div>
+    <div id='alltotal' class='total'>
+    Total: lksjdfhlKJSHMW
+    </div>
+    <div id='renewablestotal' class='total' style='display:none;'>
+    Total renewables: jsMW
+    </div>
+    <div id='nonrenewablestotal' class='total' style='display:none;'>
+    Total non-renewables: fhMW
+    </div>
+    <div id='CHPtotal' class='total' style='display:none;'>
+    Total CHP: fhMW
+    </div>
+    <div id='biomasstotal' class='total' style='display:none;'>
+    Total biomass: fhMW
+    </div>	
+    <div id='coaltotal' class='total' style='display:none;'>
+    Total coal: fhMW
+    </div>
+    <div id='gastotal' class='total' style='display:none;'>
+    Total gas: fhMW
+    </div>
+    <div id='hydrototal' class='total' style='display:none;'>
+    Total hydro: fhMW
+    </div>	
+    <div id='nucleartotal' class='total' style='display:none;'>
+    Total nuclear: fhMW
+    </div>	
+    <div id='oiltotal' class='total' style='display:none;'>
+    Total oil: fhMW
+    </div>
+    <div id='othertotal' class='total' style='display:none;'>
+    Total other: fhMW
+    </div>	
+    <div id='solartotal' class='total' style='display:none;'>
+    Total solar: fhMW
+    </div>	
+    <div id='wastetotal' class='total' style='display:none;'>
+    Total waste: fhMW
+    </div>	
+    <div id='windtotal' class='total' style='display:none;'>
+    Total wind: fhMW
+    </div>
 	<script>
 		
 		function init(){
@@ -185,6 +301,11 @@
 							
 							sublayer.setSQL("SELECT * FROM german_power_sources WHERE renewable = 'Non-renewable'");
 							return true;
+						},
+						layer13: function(){
+							
+							sublayer.setSQL("SELECT * FROM german_power_sources WHERE type = 'Other' OR type = 'Other CHP'");
+							return true;
 						}
 					}
 
@@ -196,6 +317,73 @@
 
 				});
 		}
+		
+		$(document).ready(function(){
+    $('#selector').on('change', function() {
+      if ( this.value == 'reset' && $(window).width() >= 650)
+      //.....................^.......
+      {
+		$('.total').hide();
+        $("#alltotal").show();
+      }
+	  else if (this.value =='layer11' && $(window).width() >= 650) {
+		$('.total').hide();
+		$("#renewablestotal").show();
+}
+	else if (this.value =='layer12' && $(window).width() >= 650) {
+		$('.total').hide();
+		$("#nonrenewablestotal").show();
+}
+	else if (this.value =='layer10' && $(window).width() >= 650) {
+		$('.total').hide();
+		$("#CHPtotal").show();
+}
+	else if (this.value =='layer3' && $(window).width() >= 650) {
+		$('.total').hide();
+		$("#biomasstotal").show();
+}
+	else if (this.value =='layer4' && $(window).width() >= 650) {
+		$('.total').hide();
+		$("#coaltotal").show();
+}
+	else if (this.value =='layer5' && $(window).width() >= 650) {
+		$('.total').hide();
+		$("#gastotal").show();
+}
+	else if (this.value =='layer8' && $(window).width() >= 650) {
+		$('.total').hide();
+		$("#hydrototal").show();
+}
+	else if (this.value =='layer6' && $(window).width() >= 650) {
+		$('.total').hide();
+		$("#nucleartotal").show();
+}
+	else if (this.value =='layer9' && $(window).width() >= 650) {
+		$('.total').hide();
+		$("#oiltotal").show();
+}
+	else if (this.value =='layer13' && $(window).width() >= 650) {
+		$('.total').hide();
+		$("#othertotal").show();
+}
+	else if (this.value =='layer2' && $(window).width() >= 650) {
+		$('.total').hide();
+		$("#solartotal").show();
+}
+	else if (this.value =='layer7' && $(window).width() >= 650) {
+		$('.total').hide();
+		$("#wastetotal").show();
+}
+	else if (this.value =='layer1' && $(window).width() >= 650) {
+		$('.total').hide();
+		$("#windtotal").show();
+}
+      else
+      {
+        $(".total").hide();
+      }
+    });
+});
 
 
 		window.onload = init;
