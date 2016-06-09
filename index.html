@@ -24,8 +24,8 @@
 		  font-family: "PT Sans Narrow", Arial;
 		  font-size: 28.3px;
 		  color: #000000;
-		  top: 17px;
-		  left: 60px;
+		  top: 10px;
+		  left: 45px;
 		  width: 260px;
 		  height: 45px;
 		  z-index: 9000;
@@ -71,68 +71,68 @@
       	left: 10px;
 		z-index: 9000;
 		  width: 340px;
-		height: 25px;
+		height: 24px;
 		  font-family: "PT Sans", Arial;
 		  font-size: 23px;
 		  color: #000000;
 		  background-color:transparent;
-		  padding-left: 8px;
+		  padding-left: 9px;
 		  }
 		  
 	#renewablestotal {
-		border-left: 4px solid rgba(243,243,243,.6);
+		border-left: 5px solid rgba(68,68,68,.6);
 	}
 	
 	#alltotal {
-		border-left: 4px solid rgba(243,243,243,.6);
+		border-left: 5px solid rgba(68,68,68,.6);
 	}
 	
 	#nonrenewablestotal {
-		border-left: 4px solid rgba(243,243,243,.6);
+		border-left: 5px solid rgba(68,68,68,.6);
 	}
 	
 	#CHPtotal {
-		border-left: 4px solid rgba(243,243,243,.6);
+		border-left: 5px solid rgba(68,68,68,.6);
 	}
 	
 	#biomasstotal {
-		border-left: 4px solid rgba(255,102,0,.6);
+		border-left: 5px solid rgba(255,102,0,.6);
 	}
 	
 	#coaltotal {
-		border-left: 4px solid rgba(0,0,0,.6);
+		border-left: 5px solid rgba(0,0,0,.6);
 	}
 	
 	#gastotal {
-		border-left: 4px solid rgba(15,59,130,.6);
+		border-left: 5px solid rgba(15,59,130,.6);
 	}
 	
 	#hydrototal {
-		border-left: 4px solid rgba(54,128,130,.6);
+		border-left: 5px solid rgba(54,128,130,.6);
 	}
 	
 	#nucleartotal {
-		border-left: 4px solid rgba(186,43,118,.6);
+		border-left: 5px solid rgba(186,43,118,.6);
 	}
 	
 	#oiltotal {
-		border-left: 4px solid rgba(65,0,109,.6);
+		border-left: 5px solid rgba(65,0,109,.6);
 	}
 	
 	#othertotal {
-		border-left: 4px solid rgba(175,135,110,.6);
+		border-left: 5px solid rgba(175,135,110,.6);
 	}
 	
 	#solartotal {
-		border-left: 4px solid rgba(255,204,0,.6);
+		border-left: 5px solid rgba(255,204,0,.6);
 	}
 	
 	#wastetotal {
-		border-left: 4px solid rgba(214,48,29,.6);
+		border-left: 5px solid rgba(214,48,29,.6);
 	}
 	
 	#windtotal {
-		border-left: 4px solid rgba(19,100,0,.6);
+		border-left: 5px solid rgba(19,100,0,.6);
 	}
 	  
 	@media only screen and (max-width: 750px) {
@@ -174,46 +174,46 @@
 
 	</div>
     <div id='alltotal' class='total'>
-    Total: lksjdfhlKJSHMW
+    Total: 191,153 MW
     </div>
     <div id='renewablestotal' class='total' style='display:none;'>
-    Total renewables: jsMW
+    Renewables total: 103,355 MW
     </div>
     <div id='nonrenewablestotal' class='total' style='display:none;'>
-    Total non-renewables: fhMW
+    Non-renewables total: 87,798 MW
     </div>
     <div id='CHPtotal' class='total' style='display:none;'>
-    Total CHP: fhMW
+    CHP total: 17,534 MW
     </div>
     <div id='biomasstotal' class='total' style='display:none;'>
-    Total biomass: fhMW
+    Biomass total: 6,944 MW
     </div>	
     <div id='coaltotal' class='total' style='display:none;'>
-    Total coal: fhMW
+    Coal total: 48,849 MW
     </div>
     <div id='gastotal' class='total' style='display:none;'>
-    Total gas: fhMW
+    Gas total: 23,320 MW
     </div>
     <div id='hydrototal' class='total' style='display:none;'>
-    Total hydro: fhMW
+    Hydro total: 10,104 MW
     </div>	
     <div id='nucleartotal' class='total' style='display:none;'>
-    Total nuclear: fhMW
+    Nuclear total: 10,800 MW
     </div>	
     <div id='oiltotal' class='total' style='display:none;'>
-    Total oil: fhMW
+    Oil total: 2,669 MW
     </div>
     <div id='othertotal' class='total' style='display:none;'>
-    Total other: fhMW
+    Other total: 2,497 MW
     </div>	
     <div id='solartotal' class='total' style='display:none;'>
-    Total solar: fhMW
+    Solar total: 39,333 MW
     </div>	
     <div id='wastetotal' class='total' style='display:none;'>
-    Total waste: fhMW
+    Waste total: 1,654 MW
     </div>	
     <div id='windtotal' class='total' style='display:none;'>
-    Total wind: fhMW
+    Wind total: 44,983 MW
     </div>
 	<script>
 		
@@ -233,7 +233,7 @@
           attribution: 'Mapbox <a href="http://mapbox.com/about/maps" target="_blank">Terms &amp; Feedback</a>'
         }).addTo(map);
 
-			var layerUrl = 'https://rospearce.cartodb.com/api/v2/viz/5168d148-27f9-11e6-8382-0e5db1731f59/viz.json' ;
+			var layerUrl = 'https://rospearce.cartodb.com/api/v2/viz/f57a113e-2e52-11e6-9f70-0e31c9be1b51/viz.json' ;
 			cartodb.createLayer(map,layerUrl)
 				.addTo(map)
 				.on('done', function(layer){
@@ -241,70 +241,70 @@
 
 					var LayerActions = {
 						reset: function(){
-							sublayer.setSQL("SELECT * FROM german_power_sources");
+							sublayer.setSQL("SELECT * FROM power_sources_in_germany");
 						},
 						layer1: function(){
-							sublayer.setSQL("SELECT * FROM german_power_sources WHERE type = 'Onshore wind' OR type = 'Offshore wind'");
+							sublayer.setSQL("SELECT * FROM power_sources_in_germany WHERE type = 'Onshore wind' OR type = 'Offshore wind'");
 							return true;
 						},
 						layer2: function(){
 							
-							sublayer.setSQL("SELECT * FROM german_power_sources WHERE type = 'Solar'");
+							sublayer.setSQL("SELECT * FROM power_sources_in_germany WHERE type = 'Solar'");
 							return true;
 						},
 						layer3: function(){
 							
-							sublayer.setSQL("SELECT * FROM german_power_sources WHERE type = 'Biomass' OR type = 'Biomass CHP'");
+							sublayer.setSQL("SELECT * FROM power_sources_in_germany WHERE type = 'Biomass' OR type = 'Biomass CHP'");
 							return true;
 						},
 						layer4: function(){
 							
-							sublayer.setSQL("SELECT * FROM german_power_sources WHERE type = 'Hard coal' OR type = 'Hard coal CHP' OR type = 'Lignite' OR type = 'Lignite CHP'");
+							sublayer.setSQL("SELECT * FROM power_sources_in_germany WHERE type = 'Hard coal' OR type = 'Hard coal CHP' OR type = 'Lignite' OR type = 'Lignite CHP'");
 							return true;
 						},
 						layer5: function(){
 							
-							sublayer.setSQL("SELECT * FROM german_power_sources WHERE type = 'Gas' OR type = 'Landfill gas' OR type = 'Mine gas' OR type = 'Gas CHP' OR type = 'Sewage gas'");
+							sublayer.setSQL("SELECT * FROM power_sources_in_germany WHERE type = 'Gas' OR type = 'Landfill gas' OR type = 'Mine gas' OR type = 'Gas CHP' OR type = 'Sewage gas'");
 							return true;
 						},
 						layer6: function(){
 							
-							sublayer.setSQL("SELECT * FROM german_power_sources WHERE type = 'Nuclear'");
+							sublayer.setSQL("SELECT * FROM power_sources_in_germany WHERE type = 'Nuclear'");
 							return true;
 						},
 						layer7: function(){
 							
-							sublayer.setSQL("SELECT * FROM german_power_sources WHERE type = 'Waste' OR type = 'Waste CHP'");
+							sublayer.setSQL("SELECT * FROM power_sources_in_germany WHERE type = 'Waste' OR type = 'Waste CHP'");
 							return true;
 						},
 						layer8: function(){
 							
-							sublayer.setSQL("SELECT * FROM german_power_sources WHERE type = 'Hydro' OR type = 'Pumped hydro'");
+							sublayer.setSQL("SELECT * FROM power_sources_in_germany WHERE type = 'Hydro' OR type = 'Pumped hydro'");
 							return true;
 						},
 						layer9: function(){
 							
-							sublayer.setSQL("SELECT * FROM german_power_sources WHERE type = 'Oil' OR type = 'Oil CHP'");
+							sublayer.setSQL("SELECT * FROM power_sources_in_germany WHERE type = 'Oil' OR type = 'Oil CHP'");
 							return true;
 						},
 						layer10: function(){
 							
-							sublayer.setSQL("SELECT * FROM german_power_sources WHERE CHP = 'CHP'");
+							sublayer.setSQL("SELECT * FROM power_sources_in_germany WHERE CHP = 'CHP'");
 							return true;
 						},
 						layer11: function(){
 							
-							sublayer.setSQL("SELECT * FROM german_power_sources WHERE renewable = 'Renewable'");
+							sublayer.setSQL("SELECT * FROM power_sources_in_germany WHERE renewable = 'Renewable'");
 							return true;
 						},
 						layer12: function(){
 							
-							sublayer.setSQL("SELECT * FROM german_power_sources WHERE renewable = 'Non-renewable'");
+							sublayer.setSQL("SELECT * FROM power_sources_in_germany WHERE renewable = 'Non-renewable'");
 							return true;
 						},
 						layer13: function(){
 							
-							sublayer.setSQL("SELECT * FROM german_power_sources WHERE type = 'Other' OR type = 'Other CHP'");
+							sublayer.setSQL("SELECT * FROM Power_sources_in_Germany WHERE type = 'Other' OR type = 'Other CHP' OR type = 'Geothermal'");
 							return true;
 						}
 					}
