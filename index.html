@@ -104,7 +104,7 @@
 	}
 	
 	#coaltotal {
-		border-left: 6px solid rgba(0,0,0,.65);
+		border-left: 6px solid rgba(168,102,60,.65);
 	}
 	
 	#gastotal {
@@ -119,12 +119,8 @@
 		border-left: 6px solid rgba(186,32,115,.65);
 	}
 	
-	#oiltotal {
-		border-left: 6px solid rgba(87,23,130,.65);
-	}
-	
 	#othertotal {
-		border-left: 6px solid rgba(168,102,60,.65);
+		border-left: 6px solid rgba(87,23,130,.65);
 	}
 	
 	#solartotal {
@@ -138,12 +134,26 @@
 	#windtotal {
 		border-left: 6px solid rgba(19,100,0,.65);
 	}
+	
+	#logo {
+		position: absolute;
+      	bottom: 4px;
+      	left: 84px;
+      	z-index: 9000;
+		height: 30px;
+		width: 30px;
+		background-image:url(logo.png);
+		background-repeat: no-repeat;
+		}
 	  
 	@media only screen and (max-width: 750px) {
     #map_title {
         display: none;
     }
 	.total {
+		display: none;
+	}
+	#logo {
 		display: none;
 	}
 }
@@ -169,7 +179,6 @@
             <option value = 'layer5'>Gas</option>
             <option value = 'layer8'>Hydro</option>
             <option value = 'layer6'>Nuclear</option>
-            <option value = 'layer9'>Oil</option>
             <option value = 'layer13'>Other</option>
             <option value = 'layer2'>Solar</option>
             <option value = 'layer7'>Waste</option>
@@ -204,11 +213,8 @@
     <div id='nucleartotal' class='total' style='display:none;'>
     Nuclear total: 10,800 MW
     </div>	
-    <div id='oiltotal' class='total' style='display:none;'>
-    Oil total: 2,669 MW
-    </div>
     <div id='othertotal' class='total' style='display:none;'>
-    Other total: 2,497 MW
+    Other total: 5,166 MW
     </div>	
     <div id='solartotal' class='total' style='display:none;'>
     Solar total: 39,333 MW
@@ -219,6 +225,7 @@
     <div id='windtotal' class='total' style='display:none;'>
     Wind total: 44,983 MW
     </div>
+    <div id="logo"></div>
 	<script>
 		
 		function init(){
@@ -286,11 +293,6 @@
 							sublayer.setSQL("SELECT * FROM power_sources_in_germany WHERE type = 'Hydro' OR type = 'Pumped hydro'");
 							return true;
 						},
-						layer9: function(){
-							
-							sublayer.setSQL("SELECT * FROM power_sources_in_germany WHERE type = 'Oil' OR type = 'Oil CHP'");
-							return true;
-						},
 						layer10: function(){
 							
 							sublayer.setSQL("SELECT * FROM power_sources_in_germany WHERE CHP = 'CHP'");
@@ -308,7 +310,7 @@
 						},
 						layer13: function(){
 							
-							sublayer.setSQL("SELECT * FROM Power_sources_in_Germany WHERE type = 'Other' OR type = 'Other CHP' OR type = 'Geothermal'");
+							sublayer.setSQL("SELECT * FROM Power_sources_in_Germany WHERE type = 'Other' OR type = 'Other CHP' OR type = 'Geothermal' OR type = 'Oil' OR type = 'Oil CHP'");
 							return true;
 						}
 					}
@@ -361,10 +363,6 @@
 	else if (this.value =='layer6' && $(window).width() >= 650) {
 		$('.total').hide();
 		$("#nucleartotal").show();
-}
-	else if (this.value =='layer9' && $(window).width() >= 650) {
-		$('.total').hide();
-		$("#oiltotal").show();
 }
 	else if (this.value =='layer13' && $(window).width() >= 650) {
 		$('.total').hide();
