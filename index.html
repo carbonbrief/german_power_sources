@@ -76,6 +76,7 @@
 		  width: 340px;
 		height: 24px;
 		  font-family: "PT Sans", Arial;
+		  font-weight: bold;
 		  font-size: 20px;
 		  color: #000000;
 		  background-color:transparent;
@@ -180,7 +181,7 @@
     Total: 191,153 MW
     </div>
     <div id='renewablestotal' class='total' style='display:none;'>
-    Renewables total: 101,703 MW
+    Renewables total: 101,701 MW
     </div>
     <div id='nonrenewablestotal' class='total' style='display:none;'>
     Non-renewables total: 89,452 MW
@@ -236,7 +237,7 @@
           attribution: 'Mapbox <a href="http://mapbox.com/about/maps" target="_blank">Terms &amp; Feedback</a>'
         }).addTo(map);
 
-			var layerUrl = 'https://rospearce.cartodb.com/api/v2/viz/f57a113e-2e52-11e6-9f70-0e31c9be1b51/viz.json' ;
+			var layerUrl = 'https://rospearce.cartodb.com/api/v2/viz/dcfe816a-36c9-11e6-83d3-0e31c9be1b51/viz.json' ;
 			cartodb.createLayer(map,layerUrl)
 				.addTo(map)
 				.on('done', function(layer){
@@ -267,7 +268,7 @@
 						},
 						layer5: function(){
 							
-							sublayer.setSQL("SELECT * FROM power_sources_in_germany WHERE type = 'Gas' OR type = 'Landfill gas' OR type = 'Mine gas' OR type = 'Gas CHP' OR type = 'Sewage gas'");
+							sublayer.setSQL("SELECT * FROM power_sources_in_germany WHERE type = 'Gas' OR type = 'Landfill gas' OR type = 'Mine gas' OR type = 'Gas CHP' OR type = 'Green gas' OR type = 'Sewage gas'");
 							return true;
 						},
 						layer6: function(){
